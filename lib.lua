@@ -1,3 +1,5 @@
+
+
 local UserInputService = game:GetService("UserInputService")
 local TweenService = game:GetService("TweenService")
 local RunService = game:GetService("RunService")
@@ -12,12 +14,12 @@ local Library = {
     Flags = {},
     Themes = {
     Default = {
-			Main = Color3.fromRGB(0, 0, 0),
-			Second = Color3.fromRGB(0, 0, 0),
-			Stroke = Color3.fromRGB(0, 255, 255),
-			Divider = Color3.fromRGB(60, 60, 60),
-			Text = Color3.fromRGB(255, 255, 255),
-			TextDark = Color3.fromRGB(0, 255, 255)
+                Main = Color3.fromRGB(8, 8, 10),   
+            Second = Color3.fromRGB(14, 14, 16),   
+            Stroke = Color3.fromRGB(255, 255, 255),   
+            Divider = Color3.fromRGB(20, 20, 22),
+            Text = Color3.fromRGB(255, 255, 255),
+            TextDark = Color3.fromRGB(255, 255, 255) 
     }
 },
     SelectedTheme = "Default",
@@ -461,19 +463,19 @@ function Library:MakeWindow(WindowConfig)
     local UIHidden = false
 
     WindowConfig = WindowConfig or {}
-    WindowConfig.Name = WindowConfig.Name or "Flow"
+    WindowConfig.Name = WindowConfig.Name or "Team"
     WindowConfig.ConfigFolder = WindowConfig.ConfigFolder or WindowConfig.Name
     WindowConfig.SaveConfig = WindowConfig.SaveConfig or false
     WindowConfig.HidePremium = WindowConfig.HidePremium or false
     if WindowConfig.IntroEnabled == nil then
         WindowConfig.IntroEnabled = true
     end
-    WindowConfig.IntroToggleIcon = WindowConfig.IntroToggleIcon or "rbxassetid://8834748103"
-    WindowConfig.IntroText = WindowConfig.IntroText or "Starting Flow"
+    WindowConfig.IntroToggleIcon = WindowConfig.IntroToggleIcon 
+    WindowConfig.IntroText = WindowConfig.IntroText 
     WindowConfig.CloseCallback = WindowConfig.CloseCallback or function() end
     WindowConfig.ShowIcon = WindowConfig.ShowIcon or false
-    WindowConfig.Icon = WindowConfig.Icon or "rbxassetid://8834748103"
-    WindowConfig.IntroIcon = WindowConfig.IntroIcon or "rbxassetid://8834748103"
+    WindowConfig.Icon = WindowConfig.Icon or "rbxassetid://130069738634749"
+    WindowConfig.IntroIcon = WindowConfig.IntroIcon 
     Library.Folder = WindowConfig.ConfigFolder
     Library.SaveCfg = WindowConfig.SaveConfig
 
@@ -576,7 +578,7 @@ local ResizeBtn = SetChildren(SetProps(MakeElement("Button"), {
                 Size = UDim2.new(1, -60, 0, 12),
                 Position = UDim2.new(0, 50, 1, -25),
                 Visible = not WindowConfig.HidePremium,
-                TextColor3 = Color3.fromRGB(255, 255, 255),
+                TextColor3 = Color3.fromRGB(0, 120, 215),
                 Font = Enum.Font.FredokaOne,
                 TextTransparency = 0
             })
@@ -588,8 +590,8 @@ local ResizeBtn = SetChildren(SetProps(MakeElement("Button"), {
         Position = UDim2.new(0, 25, 0, -24),
         Name = "TitleContainer"
     }), {
-        SetProps(MakeElement("Image", "rbxassetid://113627638177078"), {
-            Size = UDim2.new(0, 24, 0, 24),
+        SetProps(MakeElement("Image", "rbxassetid://130069738634749"), {
+            Size = UDim2.new(0, 26, 0, 26),
             Position = UDim2.new(0, 0, 0.5, 0),
             AnchorPoint = Vector2.new(0, 0.5),
             Name = "TitleIcon",
@@ -599,7 +601,7 @@ local ResizeBtn = SetChildren(SetProps(MakeElement("Button"), {
             Size = UDim2.new(1, -30, 1, 0),
             Position = UDim2.new(0, 30, 0, 0),
             Font = Enum.Font.GothamBlack,
-            TextSize = 2,
+            TextSize = 20,
             TextXAlignment = Enum.TextXAlignment.Left
         }), "Text")
     })
@@ -779,7 +781,7 @@ local ResizeBtn = SetChildren(SetProps(MakeElement("Button"), {
                 Position = UDim2.new(0, 30, 0, 0),
                 Font = Enum.Font.GothamSemibold,
                 TextTransparency = 0.35,
-                TextColor3 = Color3.fromRGB(230, 230, 235),
+                TextColor3 = Color3.fromRGB(255, 255, 255),
                 Name = "Title"
             })
         })
@@ -1058,7 +1060,7 @@ local ResizeBtn = SetChildren(SetProps(MakeElement("Button"), {
                 SliderConfig.Default = SliderConfig.Default or 50
                 SliderConfig.Callback = SliderConfig.Callback or function() end
                 SliderConfig.ValueName = SliderConfig.ValueName or ""
-                SliderConfig.Color = SliderConfig.Color or Color3.fromRGB(255, 255, 255)
+                SliderConfig.Color = SliderConfig.Color or Color3.fromRGB(0, 120, 215)
                 SliderConfig.Flag = SliderConfig.Flag or nil
                 SliderConfig.Save = SliderConfig.Save or false
 
@@ -1225,14 +1227,14 @@ local ResizeBtn = SetChildren(SetProps(MakeElement("Button"), {
                             Font = Enum.Font.FredokaOne,
                             Name = "Content"
                         }), "Text"),
-                        AddThemeObject(SetProps(MakeElement("Image", "rbxassetid://130069738634749"), {
+                        AddThemeObject(SetProps(MakeElement("Image", "rbxassetid://7072706796"), {
                             Size = UDim2.new(0, 20, 0, 20),
                             AnchorPoint = Vector2.new(0, 0.5),
                             Position = UDim2.new(1, -30, 0.5, 0),
                             ImageColor3 = Color3.fromRGB(240, 240, 240),
                             Name = "Ico"
                         }), "TextDark"),
-                        AddThemeObject(SetProps(MakeElement("Label", "Selected", 33), {
+                        AddThemeObject(SetProps(MakeElement("Label", "Selected", 13), {
                             Size = UDim2.new(1, -40, 1, 0),
                             Font = Enum.Font.FredokaOne,
                             Name = "Selected",
@@ -1808,7 +1810,7 @@ local Configs_HUB = {
   Cor_Options = Color3.fromRGB(15, 15, 15),
   Cor_Stroke = Color3.fromRGB(60, 60, 60),
   Cor_Text = Color3.fromRGB(240, 240, 240),
-  Cor_DarkText = Color3.fromRGB(160, 160, 165),
+  Cor_DarkText = Color3.fromRGB(255, 255, 255),
   Corner_Radius = UDim.new(0, 4),
   Text_Font = Library.Font
 }
