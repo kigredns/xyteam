@@ -591,7 +591,7 @@ local ResizeBtn = SetChildren(SetProps(MakeElement("Button"), {
         Name = "TitleContainer"
     }), {
         SetProps(MakeElement("Image", "rbxassetid://130069738634749"), {
-            Size = UDim2.new(0, 30, 0, 30),
+            Size = UDim2.new(0, 27, 0, 27),
             Position = UDim2.new(0, 0, 0.1, 0),
             AnchorPoint = Vector2.new(0, 0.5),
             Name = "TitleIcon",
