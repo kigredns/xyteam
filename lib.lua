@@ -14,10 +14,10 @@ local Library = {
     Flags = {},
     Themes = {
     Default = {
-                Main = Color3.fromRGB(8, 8, 10),   
-            Second = Color3.fromRGB(14, 14, 16),   
+                Main = Color3.fromRGB(0, 0, 0),   
+            Second = Color3.fromRGB(2, 2, 2),   
             Stroke = Color3.fromRGB(255, 255, 255),   
-            Divider = Color3.fromRGB(20, 20, 22),
+            Divider = Color3.fromRGB(5, 5, 5),
             Text = Color3.fromRGB(255, 255, 255),
             TextDark = Color3.fromRGB(255, 255, 255) 
     }
@@ -578,7 +578,7 @@ local ResizeBtn = SetChildren(SetProps(MakeElement("Button"), {
                 Size = UDim2.new(1, -60, 0, 12),
                 Position = UDim2.new(0, 50, 1, -25),
                 Visible = not WindowConfig.HidePremium,
-                TextColor3 = Color3.fromRGB(0, 120, 215),
+                TextColor3 = Color3.fromRGB(0, 255, 255),
                 Font = Enum.Font.FredokaOne,
                 TextTransparency = 0
             })
@@ -591,8 +591,8 @@ local ResizeBtn = SetChildren(SetProps(MakeElement("Button"), {
         Name = "TitleContainer"
     }), {
         SetProps(MakeElement("Image", "rbxassetid://130069738634749"), {
-            Size = UDim2.new(0, 26, 0, 26),
-            Position = UDim2.new(0, 0, 0.5, 0),
+            Size = UDim2.new(0, 30, 0, 30),
+            Position = UDim2.new(0, 0, 0.1, 0),
             AnchorPoint = Vector2.new(0, 0.5),
             Name = "TitleIcon",
             ImageTransparency = 0
@@ -601,7 +601,7 @@ local ResizeBtn = SetChildren(SetProps(MakeElement("Button"), {
             Size = UDim2.new(1, -30, 1, 0),
             Position = UDim2.new(0, 30, 0, 0),
             Font = Enum.Font.GothamBlack,
-            TextSize = 20,
+            TextSize = 15,
             TextXAlignment = Enum.TextXAlignment.Left
         }), "Text")
     })
