@@ -568,7 +568,7 @@ local ResizeBtn = SetChildren(SetProps(MakeElement("Button"), {
                 AddThemeObject(MakeElement("Stroke"), "Stroke"),
                 MakeElement("Corner", 1)
             }),
-            AddThemeObject(SetProps(MakeElement("Label", "Flow", WindowConfig.HidePremium and 14 or 13), {
+            AddThemeObject(SetProps(MakeElement("Label", "By SanderDev", WindowConfig.HidePremium and 14 or 13), {
                 Size = UDim2.new(1, -60, 0, 13),
                 Position = WindowConfig.HidePremium and UDim2.new(0, 50, 0, 19) or UDim2.new(0, 50, 0, 12),
                 Font = Enum.Font.FredokaOne,
@@ -677,7 +677,7 @@ local ResizeBtn = SetChildren(SetProps(MakeElement("Button"), {
     AddConnection(CloseBtn.MouseButton1Up, function()
         MainWindow.Visible = false
         if UserInputService.TouchEnabled then
-            MobileReopenButton.Visible = true
+            MobileReopenButton.Visible = false
         end
         UIHidden = true
         Library:MakeNotification({
@@ -1885,17 +1885,6 @@ local ListLayout = Create("UIListLayout", Menu_Notifi, {
   VerticalAlignment = "Bottom"
 })
 
-function Library:MakeNotifi(Configs)
-  local Title = Configs.Title or "Title!"
-  local text = Configs.Text or "Notification content... what will it say??"
-  local timewait = Configs.Time or 5
-
-  local Frame1 = Create("Frame", Menu_Notifi, {
-    Size = UDim2.new(2, 0, 0, 0),
-    BackgroundTransparency = 1,
-    AutomaticSize = "Y",
-    Name = "Title"
-  })
 
   local Frame2 = Create("Frame", Frame1, {
     Size = UDim2.new(0, Menu_Notifi.Size.X.Offset - 50, 0, 0),
