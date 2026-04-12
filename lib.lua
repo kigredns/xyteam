@@ -578,7 +578,7 @@ local ResizeBtn = SetChildren(SetProps(MakeElement("Button"), {
                 Size = UDim2.new(1, -60, 0, 12),
                 Position = UDim2.new(0, 50, 1, -25),
                 Visible = not WindowConfig.HidePremium,
-                TextColor3 = Color3.fromRGB(0, 255, 255),
+                TextColor3 = Color3.fromRGB(0, 120, 215),
                 Font = Enum.Font.FredokaOne,
                 TextTransparency = 0
             })
@@ -591,8 +591,8 @@ local ResizeBtn = SetChildren(SetProps(MakeElement("Button"), {
         Name = "TitleContainer"
     }), {
         SetProps(MakeElement("Image", "rbxassetid://130069738634749"), {
-            Size = UDim2.new(0, 27, 0, 27),
-            Position = UDim2.new(0, 0, 0.1, 0),
+            Size = UDim2.new(0, 28, 0, 28),
+            Position = UDim2.new(0, 0, 0.5, 0),
             AnchorPoint = Vector2.new(0, 0.5),
             Name = "TitleIcon",
             ImageTransparency = 0
