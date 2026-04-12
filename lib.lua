@@ -1884,7 +1884,17 @@ local ListLayout = Create("UIListLayout", Menu_Notifi, {
   Padding = UDim.new(0, 15),
   VerticalAlignment = "Bottom"
 })
+function Library:MakeNotifi(Configs)
+  local Title = Configs.Title 
+  local text = Configs.Text 
+  local timewait = Configs.Time
 
+  local Frame1 = Create("Frame", Menu_Notifi, {
+    Size = UDim2.new(0, 0, 0, 0),
+    BackgroundTransparency = 1,
+    AutomaticSize = "Y",
+    Name = "Title"
+  })
 
   local Frame2 = Create("Frame", Frame1, {
     Size = UDim2.new(0, Menu_Notifi.Size.X.Offset - 50, 0, 0),
