@@ -500,7 +500,7 @@ function Library:MakeWindow(WindowConfig)
     WindowConfig.IntroIcon = WindowConfig.IntroIcon 
     Library.Folder = WindowConfig.ConfigFolder
     Library.SaveCfg = WindowConfig.SaveConfig
-end
+
 
     if WindowConfig.SaveConfig then
         if not isfolder(WindowConfig.ConfigFolder) then
