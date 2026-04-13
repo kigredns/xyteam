@@ -463,7 +463,7 @@ function Library:MakeWindow(WindowConfig)
     local UIHidden = false
 
     WindowConfig = WindowConfig or {}
-    WindowConfig.Name = WindowConfig.Name or '<b><font color="#FFFFFF">TEAM | </font><font color="#FF0000">MURDER MYSTERY 2</font><font color="#FFFFFF"> |</font></b>'
+    WindowConfig.Name = WindowConfig.Name or WindowConfig.Name = WindowConfig.Name or '<b><font color="#FFFFFF">TEAM </font><font color="#FFFFFF">|</font> <font color="#FF0000">MURDER MYSTERY 2</font> <font color="#FFFFFF">|</font> <font color="#CD7F32">EVENT</font><font color="#FFFFFF"> :</font> <font color="#32CD32">none</font> <font color="#FFFFFF">|</font> <font color="#9ACD32">VERSION</font><font color="#FFFFFF"> :</font> <font color="#87CEFA">Beta</font> <font color="#FFFFFF">|</font></b>'
     WindowConfig.ConfigFolder = WindowConfig.ConfigFolder or WindowConfig.Name
     WindowConfig.SaveConfig = WindowConfig.SaveConfig or false
     WindowConfig.HidePremium = WindowConfig.HidePremium or false
@@ -601,7 +601,7 @@ local ResizeBtn = SetChildren(SetProps(MakeElement("Button"), {
         }),
         AddThemeObject(SetProps(MakeElement("Label", WindowConfig.Name, 20), {
             Size = UDim2.new(1, -40, 1, 0),
-            Position = UDim2.new(0, 18, 0, 0),
+            Position = UDim2.new(0, 21, 0, 0),
             Font = Enum.Font.GothamBlack,
             TextSize = 15,
             TextXAlignment = Enum.TextXAlignment.Left
