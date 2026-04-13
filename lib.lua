@@ -600,10 +600,10 @@ local ResizeBtn = SetChildren(SetProps(MakeElement("Button"), {
             ImageTransparency = 0
         }),
         AddThemeObject(SetProps(MakeElement("Label", WindowConfig.Name, 20), {
-            Size = UDim2.new(1, -40, 1, 0),
+            Size = UDim2.new(1, -20, 1, 0),
             Position = UDim2.new(0, 30, 0, 0),
             Font = Enum.Font.GothamBlack,
-            TextSize = 15,
+            TextSize = 13,
             TextXAlignment = Enum.TextXAlignment.Left
         }), "Text")
     })
