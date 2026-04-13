@@ -478,8 +478,7 @@ function Library:MakeWindow(WindowConfig)
     WindowConfig.IntroIcon = WindowConfig.IntroIcon 
     Library.Folder = WindowConfig.ConfigFolder
     Library.SaveCfg = WindowConfig.SaveConfig
-    
-    -- PULSUJĄCY TYTUŁ
+  
     task.wait(0.5)
     local function PulseTitle(guiObject)
         local startTime = tick()
@@ -514,7 +513,7 @@ function Library:MakeWindow(WindowConfig)
         end
     end
     FindAndAnimateTitle()
-end
+
 
 
     if WindowConfig.SaveConfig then
