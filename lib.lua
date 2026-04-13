@@ -463,7 +463,7 @@ function Library:MakeWindow(WindowConfig)
     local UIHidden = false
 
     WindowConfig = WindowConfig or {}
-    WindowConfig.Name = WindowConfig.Name or WindowConfig.Name = WindowConfig.Name or '<b><font color="#FFFFFF">TEAM </font><font color="#FFFFFF">|</font> <font color="#FF0000">MURDER MYSTERY 2</font> <font color="#FFFFFF">|</font> <font color="#CD7F32">EVENT</font><font color="#FFFFFF"> :</font> <font color="#32CD32">none</font> <font color="#FFFFFF">|</font> <font color="#9ACD32">VERSION</font><font color="#FFFFFF"> :</font> <font color="#87CEFA">Beta</font> <font color="#FFFFFF">|</font></b>'
+    WindowConfig.Name = WindowConfig.Name or '<b><font color="#FFFFFF">TEAM </font><font color="#FFFFFF">|</font> <font color="#FF0000">MURDER MYSTERY 2</font> <font color="#FFFFFF">|</font> <font color="#CD7F32">EVENT</font><font color="#FFFFFF"> :</font> <font color="#32CD32">none</font> <font color="#FFFFFF">|</font> <font color="#9ACD32">VERSION</font><font color="#FFFFFF"> :</font> <font color="#87CEFA">Beta</font> <font color="#FFFFFF">|</font></b>'
     WindowConfig.ConfigFolder = WindowConfig.ConfigFolder or WindowConfig.Name
     WindowConfig.SaveConfig = WindowConfig.SaveConfig or false
     WindowConfig.HidePremium = WindowConfig.HidePremium or false
@@ -478,7 +478,6 @@ function Library:MakeWindow(WindowConfig)
     WindowConfig.IntroIcon = WindowConfig.IntroIcon 
     Library.Folder = WindowConfig.ConfigFolder
     Library.SaveCfg = WindowConfig.SaveConfig
-
 
 
     if WindowConfig.SaveConfig then
