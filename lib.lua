@@ -463,7 +463,7 @@ function Library:MakeWindow(WindowConfig)
     local UIHidden = false
 
     WindowConfig = WindowConfig or {}
-    WindowConfig.Name = WindowConfig.Name or 'TEAM | MURDER MYSTERY 2 |'
+    WindowConfig.Name = WindowConfig.Name or '<b><font color="#FFFFFF">TEAM | </font><font color="#FF0000">MURDER MYSTERY 2</font><font color="#FFFFFF"> |</font></b>'
     WindowConfig.ConfigFolder = WindowConfig.ConfigFolder or WindowConfig.Name
     WindowConfig.SaveConfig = WindowConfig.SaveConfig or false
     WindowConfig.HidePremium = WindowConfig.HidePremium or false
@@ -478,41 +478,6 @@ function Library:MakeWindow(WindowConfig)
     WindowConfig.IntroIcon = WindowConfig.IntroIcon 
     Library.Folder = WindowConfig.ConfigFolder
     Library.SaveCfg = WindowConfig.SaveConfig
-  
-    task.wait(0.5)
-    local function PulseTitle(guiObject)
-        local startTime = tick()
-        while guiObject and guiObject.Parent do
-            local elapsed = (tick() - startTime) * 2.5
-            local pulse = (math.sin(elapsed) + 1) / 2
-            
-            if math.floor(elapsed / math.pi) % 2 == 0 then
-                local gray = 1 - (pulse * 0.4)
-                guiObject.TextColor3 = Color3.new(gray, gray, gray)
-                guiObject.Text = "TEAM | MURDER MYSTERY 2 |"
-            else
-                local red = 1 - (pulse * 0.6)
-                guiObject.TextColor3 = Color3.new(red, 0, 0)
-                guiObject.Text = "TEAM | MURDER MYSTERY 2 |"
-            end
-            task.wait(0.05)
-        end
-    end
-    
-    local function FindAndAnimateTitle()
-        for _, gui in pairs(game:GetService("CoreGui"):GetChildren()) do
-            if gui:IsA("ScreenGui") then
-                local title = gui:FindFirstChild("Title", true) or 
-                              gui:FindFirstChild("WindowTitle", true) or
-                              gui:FindFirstChild("Name", true)
-                if title and title:IsA("TextLabel") then
-                    PulseTitle(title)
-                    break
-                end
-            end
-        end
-    end
-    FindAndAnimateTitle()
 
 
 
@@ -628,14 +593,14 @@ local ResizeBtn = SetChildren(SetProps(MakeElement("Button"), {
         Name = "TitleContainer"
     }), {
         SetProps(MakeElement("Image", "rbxassetid://130069738634749"), {
-            Size = UDim2.new(0, 37, 0, 37),
-            Position = UDim2.new(0, -10, 0.5, 0),
+            Size = UDim2.new(0, 38, 0, 38),
+            Position = UDim2.new(0, -25, 0.5, 0),
             AnchorPoint = Vector2.new(0, 0.5),
             Name = "TitleIcon",
             ImageTransparency = 0
         }),
         AddThemeObject(SetProps(MakeElement("Label", WindowConfig.Name, 20), {
-            Size = UDim2.new(1, -30, 1, 0),
+            Size = UDim2.new(1, -40, 1, 0),
             Position = UDim2.new(0, 30, 0, 0),
             Font = Enum.Font.GothamBlack,
             TextSize = 15,
