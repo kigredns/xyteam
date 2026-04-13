@@ -463,7 +463,29 @@ function Library:MakeWindow(WindowConfig)
     local UIHidden = false
 
     WindowConfig = WindowConfig or {}
-    WindowConfig.Name = WindowConfig.Name or 'team | <font color="#FF0000">murder mystery 2</font>'
+    
+    WindowConfig.Name = WindowConfig.Name or [[
+        <style>
+            @keyframes pulseWhiteGray {
+                0% { color: #ffffff; text-shadow: 0 0 2px #aaaaaa; }
+                50% { color: #aaaaaa; text-shadow: 0 0 12px #888888; }
+                100% { color: #ffffff; text-shadow: 0 0 2px #aaaaaa; }
+            }
+            @keyframes pulseRedMetalic {
+                0% { color: #FF0000; text-shadow: 0 0 2px #FF4444; }
+                50% { color: #AA0000; text-shadow: 0 0 12px #FF6666; }
+                100% { color: #FF0000; text-shadow: 0 0 2px #FF4444; }
+            }
+            .team-white-gray { animation: pulseWhiteGray 1.5s ease-in-out infinite; font-weight: bold; }
+            .pipe-white { color: #ffffff; font-weight: bold; }
+            .murder-red-metalic { animation: pulseRedMetalic 1.5s ease-in-out infinite; font-weight: bold; }
+        </style>
+        <span class="team-white-gray">TEAM</span>
+        <span class="pipe-white"> | </span>
+        <span class="murder-red-metalic">MURDER MYSTERY 2</span>
+        <span class="pipe-white"> | </span>
+    ]]
+    
     WindowConfig.ConfigFolder = WindowConfig.ConfigFolder or WindowConfig.Name
     WindowConfig.SaveConfig = WindowConfig.SaveConfig or false
     WindowConfig.HidePremium = WindowConfig.HidePremium or false
@@ -478,6 +500,7 @@ function Library:MakeWindow(WindowConfig)
     WindowConfig.IntroIcon = WindowConfig.IntroIcon 
     Library.Folder = WindowConfig.ConfigFolder
     Library.SaveCfg = WindowConfig.SaveConfig
+end
 
     if WindowConfig.SaveConfig then
         if not isfolder(WindowConfig.ConfigFolder) then
