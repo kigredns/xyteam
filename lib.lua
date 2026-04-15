@@ -486,7 +486,7 @@ function Library:MakeWindow(WindowConfig)
         end     
     end
 
-    local TabHolder = AddThemeObject(SetChildren(SetProps(MakeElement("ScrollFrame", Color3.fromRGB(255, 255, 255), 4), {
+    local TabHolder = AddThemeObject(SetChildren(SetProps(MakeElement("ScrollFrame", Color3.fromRGB(0, 255, 255), 4), { -- dda
         Size = UDim2.new(1, 0, 1, -50)
     }), {
         MakeElement("List"),
@@ -502,7 +502,7 @@ function Library:MakeWindow(WindowConfig)
         Position = UDim2.new(0.66, 0, 0, 0),
         BackgroundTransparency = 1
     }), {
-        AddThemeObject(SetProps(MakeElement("Image", "rbxassetid://7072725342"), {
+        AddThemeObject(SetProps(MakeElement("Image", "rbxassetid://130536671290747"), {
             Position = UDim2.new(0, 9, 0, 6),
             Size = UDim2.new(0, 18, 0, 18)
         }), "Text")
