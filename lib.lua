@@ -503,7 +503,7 @@ function Library:MakeWindow(WindowConfig)
         BackgroundTransparency = 1
     }), {
         AddThemeObject(SetProps(MakeElement("Image", "rbxassetid://130536671290747"), {
-            Position = UDim2.new(0, 9, 0, 6),
+            Position = UDim2.new(0, 0, 0, 0),
             Size = UDim2.new(0, 33, 0, 33)
         }), "Text")
     })
