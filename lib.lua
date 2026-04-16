@@ -504,7 +504,7 @@ function Library:MakeWindow(WindowConfig)
     }), {
         AddThemeObject(SetProps(MakeElement("Image", "rbxassetid://130536671290747"), {
             Position = UDim2.new(0, 0, 0, 0),
-            Size = UDim2.new(0, 33, 0, 33)
+            Size = UDim2.new(0, 55, 0, 55)
         }), "Text")
     })
 
@@ -514,7 +514,7 @@ function Library:MakeWindow(WindowConfig)
         BackgroundTransparency = 1
     }), {
         AddThemeObject(SetProps(MakeElement("Image", "rbxassetid://109288061680947"), {
-            Position = UDim2.new(0, 5, 0, 3),
+            Position = UDim2.new(0, 0, 0, 0),
             Size = UDim2.new(0, 55, 0, 55),
             Name = "Ico"
         }), "Text")
