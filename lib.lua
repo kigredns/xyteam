@@ -17,7 +17,6 @@ local Library = {
                 Main = Color3.fromRGB(0, 0, 0),   
             Second = Color3.fromRGB(2, 2, 2),   
             Stroke = Color3.fromRGB(255, 255, 255),   
-            Sig =  Color3.fromRGB(0, 0, 0),  
             Divider = Color3.fromRGB(5, 5, 5),
             Text = Color3.fromRGB(255, 255, 255),
             TextDark = Color3.fromRGB(255, 255, 255) 
@@ -626,23 +625,23 @@ local ResizeBtn = SetChildren(SetProps(MakeElement("Button"), {
         }), {
             TitleContainer,
             WindowTopBarLine,
-            AddThemeObject(SetChildren(SetProps(MakeElement("RoundFrame", Color3.fromRGB(0, 0, 0), 0, 7), {
+            AddThemeObject(SetChildren(SetProps(MakeElement("RoundFrame", Color3.fromRGB(0, 255, 255), 0, 7), {
                 Size = UDim2.new(0, 105, 0, 30),
                 Position = UDim2.new(1, -125, 0, 10)
             }), {
-                AddThemeObject(MakeElement("Sig"), "Sig"), -- co
+                AddThemeObject(MakeElement("Stroke"), "Stroke"),
                 AddThemeObject(SetProps(MakeElement("Frame"), {
                     Size = UDim2.new(0, 1, 1, 0),
                     Position = UDim2.new(0.33, 0, 0, 0)
-                }), "Sig"),
+                }), "Stroke"),
                 AddThemeObject(SetProps(MakeElement("Frame"), {
                     Size = UDim2.new(0, 1, 1, 0),
                     Position = UDim2.new(0.66, 0, 0, 0)
-                }), "Sig"),
+                }), "Stroke"),
                 ResizeBtn,
                 MinimizeBtn,
                 CloseBtn
-            }), "Sig"), 
+            }), "Second"), 
         }),
         DragPoint,
         WindowStuff
