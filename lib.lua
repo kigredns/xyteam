@@ -504,7 +504,7 @@ function Library:MakeWindow(WindowConfig)
     }), {
         AddThemeObject(SetProps(MakeElement("Image", "rbxassetid://130536671290747"), {
             Position = UDim2.new(0, 9, 0, 6),
-            Size = UDim2.new(0, 18, 0, 18)
+            Size = UDim2.new(0, 33, 0, 33)
         }), "Text")
     })
 
@@ -513,9 +513,9 @@ function Library:MakeWindow(WindowConfig)
         Position = UDim2.new(0.33, 0, 0, 0),
         BackgroundTransparency = 1
     }), {
-        AddThemeObject(SetProps(MakeElement("Image", "rbxassetid://7072719338"), {
+        AddThemeObject(SetProps(MakeElement("Image", "rbxassetid://109288061680947"), {
             Position = UDim2.new(0, 9, 0, 6),
-            Size = UDim2.new(0, 18, 0, 18),
+            Size = UDim2.new(0, 33, 0, 33),
             Name = "Ico"
         }), "Text")
     })
@@ -704,7 +704,7 @@ local ResizeBtn = SetChildren(SetProps(MakeElement("Button"), {
     AddConnection(MinimizeBtn.MouseButton1Up, function()
         if Minimized then
             TweenService:Create(MainWindow, TweenInfo.new(0.5, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {Size = UDim2.new(0, 615, 0, 344)}):Play()
-            MinimizeBtn.Ico.Image = "rbxassetid://7072719338"
+            MinimizeBtn.Ico.Image = "rbxassetid://109288061680947"
             wait(.02)
             MainWindow.ClipsDescendants = false
             WindowStuff.Visible = true
@@ -712,7 +712,7 @@ local ResizeBtn = SetChildren(SetProps(MakeElement("Button"), {
         else
             MainWindow.ClipsDescendants = true
             WindowTopBarLine.Visible = false
-            MinimizeBtn.Ico.Image = "rbxassetid://7072720870"
+            MinimizeBtn.Ico.Image = "rbxassetid://121627757075184"
 
             TweenService:Create(MainWindow, TweenInfo.new(0.5, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {Size = UDim2.new(0, TitleContainer.AbsoluteSize.X + 140, 0, 50)}):Play()
             wait(0.1)
