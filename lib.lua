@@ -931,62 +931,134 @@ function TabFunction:MakeTab(TabConfig)
     
     return ParagraphFunction
 end 
-            function ElementFunction:AddButton(ButtonConfig)
-                ButtonConfig = ButtonConfig or {}
-                ButtonConfig.Name = ButtonConfig.Name or "Button"
-                ButtonConfig.Callback = ButtonConfig.Callback or function() end
-                ButtonConfig.Icon = ButtonConfig.Icon or "rbxassetid://3944703587"
+function TabFunction:MakeTab(TabConfig)
+    TabConfig = TabConfig or {}
+    TabConfig.Name = TabConfig.Name or "Tab"
+    TabConfig.Icon = TabConfig.Icon or ""
+    TabConfig.PremiumOnly = TabConfig.PremiumOnly or false
+    TabConfig.Color = TabConfig.Color or Color3.fromRGB(255, 255, 255)
 
-                local Button = {}
 
-                local Click = SetProps(MakeElement("Button"), {
-                    Size = UDim2.new(1, 0, 1, 0)
-                })
+    local function LightenColor(Color)
+        return Color3.new(
+            math.min(1, Color.r + 0.3),
+            math.min(1, Color.g + 0.3),
+            math.min(1, Color.b + 0.3)
+        )
+    end
 
-                local ButtonFrame = AddThemeObject(SetChildren(SetProps(MakeElement("RoundFrame", Color3.fromRGB(255, 255, 255), 0, 5), {
-                    Size = UDim2.new(1, 0, 0, 33),
-                    Parent = ItemParent,
-                    BackgroundTransparency = 0.7
-                }), {
-                    AddThemeObject(SetProps(MakeElement("Label", ButtonConfig.Name, 15), {
-                        Size = UDim2.new(1, -12, 1, 0),
-                        Position = UDim2.new(0, 12, 0, 0),
-                        Font = Enum.Font.FredokaOne,
-                        Name = "Content"
-                    }), "Text"),
-                    AddThemeObject(SetProps(MakeElement("Image", ButtonConfig.Icon), {
-                        Size = UDim2.new(0, 20, 0, 20),
-                        Position = UDim2.new(1, -30, 0, 7),
-                    }), "TextDark"),
-                    AddThemeObject(MakeElement("Stroke"), "Stroke"),
-                    Click
-                }), "Second")
+    local TabFrame = SetChildren(SetProps(MakeElement("Button"), {
+        Size = UDim2.new(1, 0, 0, 28),
+        Parent = TabHolder,
+        BackgroundTransparency = 1
+    }), {
+        AddThemeObject(SetProps(MakeElement("Image", TabConfig.Icon), {
+            AnchorPoint = Vector2.new(0, 0.5),
+            Size = UDim2.new(0, 15, 0, 15),
+            Position = UDim2.new(0, 10, 0.5, 0),
+            ImageTransparency = 0.4,
+            Name = "Ico",
+            ImageColor3 = TabConfig.Color 
+        }), "Text"),
+        SetProps(MakeElement("Label", TabConfig.Name, 14), {
+            Size = UDim2.new(1, -30, 1, 0),
+            Position = UDim2.new(0, 30, 0, 0),
+            Font = Enum.Font.GothamSemibold,
+            TextTransparency = 0.35,
+            TextColor3 = TabConfig.Color, 
+            Name = "Title"
+        })
+    })
 
-                AddConnection(Click.MouseEnter, function()
-                    TweenService:Create(ButtonFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(Library.Themes[Library.SelectedTheme].Second.R * 255 + 3, Library.Themes[Library.SelectedTheme].Second.G * 255 + 3, Library.Themes[Library.SelectedTheme].Second.B * 255 + 3)}):Play()
-                end)
+    if GetIcon(TabConfig.Icon) ~= nil then
+        TabFrame.Ico.Image = GetIcon(TabConfig.Icon)
+    end     
 
-                AddConnection(Click.MouseLeave, function()
-                    TweenService:Create(ButtonFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Library.Themes[Library.SelectedTheme].Second}):Play()
-                end)
+    local Container = AddThemeObject(SetChildren(SetProps(MakeElement("ScrollFrame", Color3.fromRGB(255, 255, 255), 5), {
+        Size = UDim2.new(1, -150, 1, -50),
+        Position = UDim2.new(0, 150, 0, 50),
+        Parent = MainWindow,
+        Visible = false,
+        Name = "ItemContainer"
+    }), {
+        MakeElement("List", 0, 6),
+        MakeElement("Padding", 15, 10, 10, 15)
+    }), "Divider")
 
-                AddConnection(Click.MouseButton1Up, function()
-                    TweenService:Create(ButtonFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(Library.Themes[Library.SelectedTheme].Second.R * 255 + 3, Library.Themes[Library.SelectedTheme].Second.G * 255 + 3, Library.Themes[Library.SelectedTheme].Second.B * 255 + 3)}):Play()
-                    spawn(function()
-                        ButtonConfig.Callback()
-                    end)
-                end)
+    AddConnection(Container.UIListLayout:GetPropertyChangedSignal("AbsoluteContentSize"), function()
+        Container.CanvasSize = UDim2.new(0, 0, 0, Container.UIListLayout.AbsoluteContentSize.Y + 30)
+    end)
 
-                AddConnection(Click.MouseButton1Down, function()
-                    TweenService:Create(ButtonFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(Library.Themes[Library.SelectedTheme].Second.R * 255 + 6, Library.Themes[Library.SelectedTheme].Second.G * 255 + 6, Library.Themes[Library.SelectedTheme].Second.B * 255 + 6)}):Play()
-                end)
+    local ClickSound = Instance.new("Sound")
+    ClickSound.SoundId = "rbxassetid://6895079853"
+    ClickSound.Volume = 0.8
+    ClickSound.Parent = TabFrame
 
-                function Button:Set(ButtonText)
-                    ButtonFrame.Content.Text = ButtonText
-                end     
 
-                return Button
+    local NormalColor = TabConfig.Color
+    local ActiveColor = LightenColor(NormalColor) 
+
+    if FirstTab then
+        FirstTab = false
+ 
+        TabFrame.Ico.ImageTransparency = 0.2
+        TabFrame.Title.TextTransparency = 0.2
+        TabFrame.Title.Font = Enum.Font.GothamBold
+        TabFrame.Ico.ImageColor3 = ActiveColor
+        TabFrame.Title.TextColor3 = ActiveColor
+        Container.Visible = true
+    else
+ 
+        TabFrame.Ico.ImageColor3 = NormalColor
+        TabFrame.Title.TextColor3 = NormalColor
+    end
+
+    AddConnection(TabFrame.MouseButton1Click, function()
+        ClickSound:Play()
+        
+     
+        for _, Tab in next, TabHolder:GetChildren() do
+            if Tab:IsA("TextButton") then
+                Tab.Title.Font = Enum.Font.GothamSemibold
+                local OriginalColor = Tab.OriginalColor 
+                TweenService:Create(Tab.Ico, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
+                    ImageTransparency = 0.4,
+                    ImageColor3 = OriginalColor  
+                }):Play()
+                TweenService:Create(Tab.Title, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
+                    TextTransparency = 0.4,
+                    TextColor3 = OriginalColor  
+                }):Play()
             end    
+        end
+        
+
+        for _, ItemContainer in next, MainWindow:GetChildren() do
+            if ItemContainer.Name == "ItemContainer" then
+                ItemContainer.Visible = false
+            end    
+        end
+   
+        TweenService:Create(TabFrame.Ico, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
+            ImageTransparency = 0.2,
+            ImageColor3 = ActiveColor 
+        }):Play()
+        TweenService:Create(TabFrame.Title, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
+            TextTransparency = 0.2,
+            TextColor3 = ActiveColor  
+        }):Play()
+        TabFrame.Title.Font = Enum.Font.GothamBold
+        Container.Visible = true   
+    end)
+
+    TabFrame.OriginalColor = NormalColor
+
+    local function GetElements(ItemParent)
+
+    end
+    
+    return GetElements(Container)
+end
             function ElementFunction:AddToggle(ToggleConfig)
                 ToggleConfig = ToggleConfig or {}
                 ToggleConfig.Name = ToggleConfig.Name or "Toggle"
