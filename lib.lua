@@ -486,7 +486,7 @@ function Library:MakeWindow(WindowConfig)
         end     
     end
 
-    local TabHolder = AddThemeObject(SetChildren(SetProps(MakeElement("ScrollFrame", Color3.fromRGB(0, 0, 255), 4), { -- dda
+    local TabHolder = AddThemeObject(SetChildren(SetProps(MakeElement("ScrollFrame", Color3.fromRGB(255, 255, 255), 4), {
         Size = UDim2.new(1, 0, 1, -50)
     }), {
         MakeElement("List"),
@@ -502,9 +502,9 @@ function Library:MakeWindow(WindowConfig)
         Position = UDim2.new(0.66, 0, 0, 0),
         BackgroundTransparency = 1
     }), {
-        AddThemeObject(SetProps(MakeElement("Image", "rbxassetid://130536671290747"), {
-            Position = UDim2.new(0.66, 0, 0, 0),
-            Size = UDim2.new(0, 55, 0, 55)
+        AddThemeObject(SetProps(MakeElement("Image", "rbxassetid://7072725342"), {
+            Position = UDim2.new(0, 9, 0, 6),
+            Size = UDim2.new(0, 18, 0, 18)
         }), "Text")
     })
 
@@ -513,9 +513,9 @@ function Library:MakeWindow(WindowConfig)
         Position = UDim2.new(0.33, 0, 0, 0),
         BackgroundTransparency = 1
     }), {
-        AddThemeObject(SetProps(MakeElement("Image", "rbxassetid://109288061680947"), {
-            Position = UDim2.new(0.33, 0, 0, 0),
-            Size = UDim2.new(0, 55, 0, 55),
+        AddThemeObject(SetProps(MakeElement("Image", "rbxassetid://7072719338"), {
+            Position = UDim2.new(0, 9, 0, 6),
+            Size = UDim2.new(0, 18, 0, 18),
             Name = "Ico"
         }), "Text")
     })
@@ -625,7 +625,7 @@ local ResizeBtn = SetChildren(SetProps(MakeElement("Button"), {
         }), {
             TitleContainer,
             WindowTopBarLine,
-            AddThemeObject(SetChildren(SetProps(MakeElement("RoundFrame", Color3.fromRGB(0, 255, 255), 0, 7), {
+            AddThemeObject(SetChildren(SetProps(MakeElement("RoundFrame", Color3.fromRGB(255, 255, 255), 0, 7), {
                 Size = UDim2.new(0, 105, 0, 30),
                 Position = UDim2.new(1, -125, 0, 10)
             }), {
@@ -704,7 +704,7 @@ local ResizeBtn = SetChildren(SetProps(MakeElement("Button"), {
     AddConnection(MinimizeBtn.MouseButton1Up, function()
         if Minimized then
             TweenService:Create(MainWindow, TweenInfo.new(0.5, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {Size = UDim2.new(0, 615, 0, 344)}):Play()
-            MinimizeBtn.Ico.Image = "rbxassetid://109288061680947"
+            MinimizeBtn.Ico.Image = "rbxassetid://7072719338"
             wait(.02)
             MainWindow.ClipsDescendants = false
             WindowStuff.Visible = true
@@ -712,7 +712,7 @@ local ResizeBtn = SetChildren(SetProps(MakeElement("Button"), {
         else
             MainWindow.ClipsDescendants = true
             WindowTopBarLine.Visible = false
-            MinimizeBtn.Ico.Image = "rbxassetid://121627757075184"
+            MinimizeBtn.Ico.Image = "rbxassetid://7072720870"
 
             TweenService:Create(MainWindow, TweenInfo.new(0.5, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {Size = UDim2.new(0, TitleContainer.AbsoluteSize.X + 140, 0, 50)}):Play()
             wait(0.1)
@@ -876,44 +876,61 @@ local ResizeBtn = SetChildren(SetProps(MakeElement("Button"), {
                 end
                 return LabelFunction
             end
-            function ElementFunction:AddParagraph(Text, Content)
-                Text = Text or "Text"
-                Content = Content or "Content"
+      function ElementFunction:AddParagraph(Text, Content, Colors)
+    Text = Text or "Text"
+    Content = Content or "Content"
+    
+    -- Domyślne kolory (jeśli nie podano)
+    local TitleColor = Colors and Colors.TitleColor or Color3.fromRGB(255, 255, 255)
+    local ContentColor = Colors and Colors.ContentColor or Color3.fromRGB(180, 180, 180)
 
-                local ParagraphFrame = AddThemeObject(SetChildren(SetProps(MakeElement("RoundFrame", Color3.fromRGB(255, 255, 255), 0, 5), {
-                    Size = UDim2.new(1, 0, 0, 30),
-                    BackgroundTransparency = 0.01,
-                    Parent = ItemParent
-                }), {
-                    AddThemeObject(SetProps(MakeElement("Label", Text, 15), {
-                        Size = UDim2.new(1, -12, 0, 14),
-                        Position = UDim2.new(0, 12, 0, 10),
-                        Font = Enum.Font.FredokaOne,
-                        Name = "Title"
-                    }), "Text"),
-                    AddThemeObject(SetProps(MakeElement("Label", "", 13), {
-                        Size = UDim2.new(1, -24, 0, 0),
-                        Position = UDim2.new(0, 12, 0, 26),
-                        Font = Enum.Font.FredokaOne,
-                        Name = "Content",
-                        TextWrapped = true
-                    }), "TextDark"),
-                    AddThemeObject(MakeElement("Stroke"), "Stroke")
-                }), "Second")
+    local ParagraphFrame = AddThemeObject(SetChildren(SetProps(MakeElement("RoundFrame", Color3.fromRGB(255, 255, 255), 0, 5), {
+        Size = UDim2.new(1, 0, 0, 30),
+        BackgroundTransparency = 0.01,
+        Parent = ItemParent
+    }), {
+        -- Tytuł z własnym kolorem
+        SetProps(MakeElement("Label", Text, 15), {
+            Size = UDim2.new(1, -12, 0, 14),
+            Position = UDim2.new(0, 12, 0, 10),
+            Font = Enum.Font.FredokaOne,
+            Name = "Title",
+            TextColor3 = TitleColor  -- 🔥 KOLOR TYTUŁU
+        }),
+        
+        -- Treść z własnym kolorem
+        SetProps(MakeElement("Label", "", 13), {
+            Size = UDim2.new(1, -24, 0, 0),
+            Position = UDim2.new(0, 12, 0, 26),
+            Font = Enum.Font.FredokaOne,
+            Name = "Content",
+            TextWrapped = true,
+            TextColor3 = ContentColor  -- 🔥 KOLOR TREŚCI
+        }),
+        
+        AddThemeObject(MakeElement("Stroke"), "Stroke")
+    }), "Second")
 
-                AddConnection(ParagraphFrame.Content:GetPropertyChangedSignal("Text"), function()
-                    ParagraphFrame.Content.Size = UDim2.new(1, -24, 0, ParagraphFrame.Content.TextBounds.Y)
-                    ParagraphFrame.Size = UDim2.new(1, 0, 0, ParagraphFrame.Content.TextBounds.Y + 35)
-                end)
+    AddConnection(ParagraphFrame.Content:GetPropertyChangedSignal("Text"), function()
+        ParagraphFrame.Content.Size = UDim2.new(1, -24, 0, ParagraphFrame.Content.TextBounds.Y)
+        ParagraphFrame.Size = UDim2.new(1, 0, 0, ParagraphFrame.Content.TextBounds.Y + 35)
+    end)
 
-                ParagraphFrame.Content.Text = Content
+    ParagraphFrame.Content.Text = Content
 
-                local ParagraphFunction = {}
-                function ParagraphFunction:Set(ToChange)
-                    ParagraphFrame.Content.Text = ToChange
-                end
-                return ParagraphFunction
-            end    
+    local ParagraphFunction = {}
+    function ParagraphFunction:Set(ToChange)
+        ParagraphFrame.Content.Text = ToChange
+    end
+    
+-- d
+    function ParagraphFunction:SetColors(TitleColor, ContentColor)
+        ParagraphFrame.Title.TextColor3 = TitleColor
+        ParagraphFrame.Content.TextColor3 = ContentColor
+    end
+    
+    return ParagraphFunction
+end 
             function ElementFunction:AddButton(ButtonConfig)
                 ButtonConfig = ButtonConfig or {}
                 ButtonConfig.Name = ButtonConfig.Name or "Button"
