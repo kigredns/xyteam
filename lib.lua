@@ -759,33 +759,34 @@ local ResizeBtn = SetChildren(SetProps(MakeElement("Button"), {
     end 
 
     local TabFunction = {}
-    function TabFunction:MakeTab(TabConfig)
-        TabConfig = TabConfig or {}
-        TabConfig.Name = TabConfig.Name or "Tab"
-        TabConfig.Icon = TabConfig.Icon or ""
-        TabConfig.PremiumOnly = TabConfig.PremiumOnly or false
+function TabFunction:MakeTab(TabConfig)
+    TabConfig = TabConfig or {}
+    TabConfig.Name = TabConfig.Name or "Tab"
+    TabConfig.Icon = TabConfig.Icon or ""
+    TabConfig.PremiumOnly = TabConfig.PremiumOnly or false
+    TabConfig.Color = TabConfig.Color or Color3.fromRGB(255, 255, 255)
 
-        local TabFrame = SetChildren(SetProps(MakeElement("Button"), {
-            Size = UDim2.new(1, 0, 0, 28),
-            Parent = TabHolder,
-            BackgroundTransparency = 1
-        }), {
-            AddThemeObject(SetProps(MakeElement("Image", TabConfig.Icon), {
-                AnchorPoint = Vector2.new(0, 0.5),
-                Size = UDim2.new(0, 15, 0, 15),
-                Position = UDim2.new(0, 10, 0.5, 0),
-                ImageTransparency = 0.4,
-                Name = "Ico"
-            }), "Text"),
-            SetProps(MakeElement("Label", TabConfig.Name, 14), {
-                Size = UDim2.new(1, -30, 1, 0),
-                Position = UDim2.new(0, 30, 0, 0),
-                Font = Enum.Font.GothamSemibold,
-                TextTransparency = 0.35,
-                TextColor3 = Color3.fromRGB(255, 255, 255),
-                Name = "Title"
-            })
+    local TabFrame = SetChildren(SetProps(MakeElement("Button"), {
+        Size = UDim2.new(1, 0, 0, 28),
+        Parent = TabHolder,
+        BackgroundTransparency = 1
+    }), {
+        AddThemeObject(SetProps(MakeElement("Image", TabConfig.Icon), {
+            AnchorPoint = Vector2.new(0, 0.5),
+            Size = UDim2.new(0, 15, 0, 15),
+            Position = UDim2.new(0, 10, 0.5, 0),
+            ImageTransparency = 0.4,
+            Name = "Ico"
+        }), "Text"),
+        SetProps(MakeElement("Label", TabConfig.Name, 14), {
+            Size = UDim2.new(1, -30, 1, 0),
+            Position = UDim2.new(0, 30, 0, 0),
+            Font = Enum.Font.GothamSemibold,
+            TextTransparency = 0.35,
+            TextColor3 = TabConfig.Color, 
+            Name = "Title"
         })
+    })
 
         if GetIcon(TabConfig.Icon) ~= nil then
             TabFrame.Ico.Image = GetIcon(TabConfig.Icon)
@@ -880,7 +881,7 @@ local ResizeBtn = SetChildren(SetProps(MakeElement("Button"), {
     Text = Text or "Text"
     Content = Content or "Content"
     
-    -- Domyślne kolory (jeśli nie podano)
+
     local TitleColor = Colors and Colors.TitleColor or Color3.fromRGB(255, 255, 255)
     local ContentColor = Colors and Colors.ContentColor or Color3.fromRGB(180, 180, 180)
 
@@ -889,23 +890,23 @@ local ResizeBtn = SetChildren(SetProps(MakeElement("Button"), {
         BackgroundTransparency = 0.01,
         Parent = ItemParent
     }), {
-        -- Tytuł z własnym kolorem
+   
         SetProps(MakeElement("Label", Text, 15), {
             Size = UDim2.new(1, -12, 0, 14),
             Position = UDim2.new(0, 12, 0, 10),
             Font = Enum.Font.FredokaOne,
             Name = "Title",
-            TextColor3 = TitleColor  -- 🔥 KOLOR TYTUŁU
+            TextColor3 = TitleColor 
         }),
         
-        -- Treść z własnym kolorem
+
         SetProps(MakeElement("Label", "", 13), {
             Size = UDim2.new(1, -24, 0, 0),
             Position = UDim2.new(0, 12, 0, 26),
             Font = Enum.Font.FredokaOne,
             Name = "Content",
             TextWrapped = true,
-            TextColor3 = ContentColor  -- 🔥 KOLOR TREŚCI
+            TextColor3 = ContentColor 
         }),
         
         AddThemeObject(MakeElement("Stroke"), "Stroke")
@@ -922,8 +923,7 @@ local ResizeBtn = SetChildren(SetProps(MakeElement("Button"), {
     function ParagraphFunction:Set(ToChange)
         ParagraphFrame.Content.Text = ToChange
     end
-    
--- d
+
     function ParagraphFunction:SetColors(TitleColor, ContentColor)
         ParagraphFrame.Title.TextColor3 = TitleColor
         ParagraphFrame.Content.TextColor3 = ContentColor
@@ -1085,7 +1085,6 @@ end
                 local Slider = {Value = SliderConfig.Default, Save = SliderConfig.Save}
                 local Dragging = false
 
-                -- SLIDER BACKGROUND (leicht grau durchsichtig) MIT BORDER DRUMHERUM
                 local SliderBackground = SetChildren(SetProps(MakeElement("RoundFrame", Color3.fromRGB(100, 100, 110), 0, 5), {
                     Size = UDim2.new(1, -24, 0, 26),
                     Position = UDim2.new(0, 12, 0, 30),
